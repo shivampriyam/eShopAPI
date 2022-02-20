@@ -4,7 +4,7 @@ const User = require('../models/User');
 const  { verifyToken, verifyTokenAndAdmin, verifyTokenAndAuthorisation} = require('../routes/verifyToken');
 
 // Update
-router.put('/', verifyTokenAndAuthorisation, async (req,res)=>{
+router.put('/:id', verifyTokenAndAuthorisation, async (req,res)=>{
     if(req.body.password){
         req.body.password = cryptoJs.AES.encrypt( req.body.password, process.env.PASS_SEC ).toString();
     }
