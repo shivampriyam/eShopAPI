@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
@@ -8,9 +9,12 @@ const PORT = process.env.PORT || 3000;
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(cors());
 
 // routes
 app.use('/api/books', booksRoute);
+
+// create a logger
 
 // conect to mongodb atlas
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }).then(()=> {
